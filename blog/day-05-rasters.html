@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=None"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'None');
+        </script>
+        <meta name="description" content="">
+        <meta name="author" content="Hemanta Sharma">
+        <title>Day 5: Raster</title>
+
+        
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../assets/css/custom.css" />
+
+                <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+        </script>
+        <!-- MathJax configuration -->
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                    displayMath: [ ["$$",'$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                // Center justify equations in code and markdown cells. Elsewhere
+                // we use CSS to left justify single line equations in code cells.
+                displayAlign: 'center',
+                "HTML-CSS": {
+                    styles: {'.MathJax_Display': {"margin": 0}},
+                    linebreaks: { automatic: true }
+                }
+            });
+        </script>
+
+    </head>
+
+    <body>
+            <nav class="navbar navbar-default">
+        <div class="container text-center">
+
+            <div id="navbar" class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                
+                    <li><a href="../index.html">Home</a></li>
+                
+                    <li><a href="index.html">Blog</a></li>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div id='content'>
+            <h1>
+ Day 5: Raster
+</h1>
+<p>
+ For hexagon day yesterday,
+ <a href="day-04-hexagons.html">
+  I aggregated all the vertices of each Citrix Cycle ride to regular 5 acre hexagons
+ </a>
+ . For today’s map I decided to see what that data would look like aggregated to pixel cells. I used the Kerned Density Estimation (KDE) Processing tool in QGIS to create a raster layer of vertex density for all rides. It created a much different look compared to the raw point data. This put me down a rabbit hole to do some visual comparisons of representing these veritces as points versus as KDE raster. I’m not super-savvy when it comes to rasters and there are a lot of different settings and approaches to mapping density that, given the time constraints of this challenge, I did not delve into. What follows are some not particularly technical musings about 3 different rendering approaches for this point data.
+</p>
+<p>
+ First I just mapped the raw point data as just solid-filled points. Looking at this, it looks like pretty much every street downtown is equally dense with Citrix Cycle traffic. This isn’t a great representation of this data if you’re interested in point density.
+</p>
+<p>
+ <img alt="Citrix Cycle - No Blend" src="..\images\day-05-rasters\day-05-rasters-map-01.PNG"/>
+</p>
+<p>
+ Then I added an Addition blend effect for each feature in the point representation. As markers overlap, the move gradually from yellow to bright white. This does draw out some more variation in density of points! However, I should note that there are over 1 million points in this dataset and it does take a bit of time to render the whole layer. Not the end of the world, but if I wanted to serve this data as web map, it’d be really villainous to force users to download that much data.
+</p>
+<p>
+ <img alt="Citrix Cycle - Addition Blend" src="..\images\day-05-rasters\day-05-rasters-map-02.PNG"/>
+</p>
+<p>
+ Finally I, ran the data through the KDE tool. This creates a pretty interesting view of the data that gives you a general sense of the variation in point density across the dataset. It’s also a pretty small dataset. Much better for serving over the web.
+</p>
+<p>
+ <img alt="Citrix Cycle - Kernel Density Estimation" src="..\images\day-05-rasters\day-05-rasters-map-03.PNG"/>
+</p>
+<p>
+ It’s also interesting to compare these different rendering modes across different scales. Because of the lower resolution of the KDE raster, I kind of like the points with Addition blend mode better.
+</p>
+<p>
+ <img alt="Citrix Cycle - Large Scale Rendering Comparison" src="..\images\day-05-rasters\day-05-rasters-map-04.PNG"/>
+</p>
+<p>
+ Zooming out, the usefulness of that blend effect seems to decrease because when you get to smaller scales more and more points are occupying the same pixels. The KDE layer look doesn’t really change because its rendering is based on the data values of the pixels in the KDE raster layer. It also renders much faster!
+</p>
+<p>
+ <img alt="Citrix Cycle - Small Scale Rendering Comparison" src="..\images\day-05-rasters\day-05-rasters-map-05.PNG"/>
+</p>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!--
+Script to remove the notebook prompt:
+In[12]
+Out[12]
+-->
+<script>
+    var prompts = document.getElementsByClassName('prompt');
+
+    while(prompts[0]) {
+    prompts[0].parentNode.removeChild(prompts[0]);
+    }
+</script>
+                    <div class="container">
+            <div id="share" class="navbar-static-bottom"></div>
+            <script>
+                $("#share").jsSocials({
+                    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+                });
+            </script>
+            <div id="disqus_thread"></div>
+            <script>
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                    s.src = 'https://None.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>
+                Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+            <script id="dsq-count-scr" src="//None.disqus.com/count.js" async></script>
+        </div>
+            <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lag=html&lang=py&lang=sh&lang=bsh&lang=js&amp;"></script>
+
+
+<link rel="stylesheet" href="../assets/css/light_theme.css" />
+
+        </div>
+
+    </body>
+</html>
