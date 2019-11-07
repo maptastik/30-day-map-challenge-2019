@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:22, minZoom:9
+        }).fitBounds([[35.70251107688644,-78.81561927304173],[35.88615607582455,-78.49516382230985]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_CARTODarkMatterNoLabels_0 = L.tileLayer('https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 9,
+            maxZoom: 22,
+            minNativeZoom: 0,
+            maxNativeZoom: 18
+        });
+        layer_CARTODarkMatterNoLabels_0;
+        map.addLayer(layer_CARTODarkMatterNoLabels_0);
+        function pop_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? Autolinker.link(String(feature.properties['fid'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['grid_id'] !== null ? Autolinker.link(String(feature.properties['grid_id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">id_count</th>\
+                        <td>' + (feature.properties['id_count'] !== null ? Autolinker.link(String(feature.properties['id_count'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1_0(feature) {
+            if (feature.properties['id_count'] >= 1.000000 && feature.properties['id_count'] <= 3.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,191,165,0.10196078431372549)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 3.000000 && feature.properties['id_count'] <= 7.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,192,165,0.10588235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 7.000000 && feature.properties['id_count'] <= 12.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,193,166,0.11372549019607843)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 12.000000 && feature.properties['id_count'] <= 18.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(1,194,166,0.12156862745098039)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 18.000000 && feature.properties['id_count'] <= 24.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(2,195,167,0.12549019607843137)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 24.000000 && feature.properties['id_count'] <= 32.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(2,196,167,0.13333333333333333)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 32.000000 && feature.properties['id_count'] <= 41.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(3,196,167,0.1411764705882353)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 41.000000 && feature.properties['id_count'] <= 49.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(4,197,168,0.14901960784313725)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 49.000000 && feature.properties['id_count'] <= 58.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(4,198,168,0.15294117647058825)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 58.000000 && feature.properties['id_count'] <= 69.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(5,199,168,0.1607843137254902)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 69.000000 && feature.properties['id_count'] <= 82.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(5,200,169,0.16862745098039217)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 82.000000 && feature.properties['id_count'] <= 96.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(6,201,169,0.17254901960784313)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 96.000000 && feature.properties['id_count'] <= 109.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(7,201,169,0.1803921568627451)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 109.000000 && feature.properties['id_count'] <= 123.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(7,202,170,0.18823529411764706)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 123.000000 && feature.properties['id_count'] <= 136.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,203,170,0.19215686274509805)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 136.000000 && feature.properties['id_count'] <= 150.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,204,170,0.2)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 150.000000 && feature.properties['id_count'] <= 165.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(9,205,171,0.20784313725490197)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 165.000000 && feature.properties['id_count'] <= 180.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(10,206,171,0.21568627450980393)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 180.000000 && feature.properties['id_count'] <= 197.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(10,207,171,0.2196078431372549)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 197.000000 && feature.properties['id_count'] <= 221.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(11,207,172,0.22745098039215686)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 221.000000 && feature.properties['id_count'] <= 244.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(11,208,172,0.23529411764705882)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 244.000000 && feature.properties['id_count'] <= 262.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(12,209,172,0.23921568627450981)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 262.000000 && feature.properties['id_count'] <= 282.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(12,210,173,0.24705882352941178)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 282.000000 && feature.properties['id_count'] <= 304.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(13,211,173,0.2549019607843137)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 304.000000 && feature.properties['id_count'] <= 326.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(14,212,173,0.25882352941176473)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 326.000000 && feature.properties['id_count'] <= 343.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(14,213,174,0.26666666666666666)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 343.000000 && feature.properties['id_count'] <= 363.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(15,213,174,0.27450980392156865)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 363.000000 && feature.properties['id_count'] <= 389.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(15,214,174,0.2823529411764706)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 389.000000 && feature.properties['id_count'] <= 412.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,215,175,0.28627450980392155)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 412.000000 && feature.properties['id_count'] <= 442.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(17,216,175,0.29411764705882354)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 442.000000 && feature.properties['id_count'] <= 474.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(17,217,175,0.30196078431372547)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 474.000000 && feature.properties['id_count'] <= 500.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(18,218,176,0.3058823529411765)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 500.000000 && feature.properties['id_count'] <= 533.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(18,219,176,0.3137254901960784)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 533.000000 && feature.properties['id_count'] <= 569.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,219,177,0.3215686274509804)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 569.000000 && feature.properties['id_count'] <= 605.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(19,220,177,0.32941176470588235)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 605.000000 && feature.properties['id_count'] <= 628.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(20,221,177,0.3333333333333333)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 628.000000 && feature.properties['id_count'] <= 654.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(21,222,178,0.3411764705882353)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 654.000000 && feature.properties['id_count'] <= 686.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(21,223,178,0.34901960784313724)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 686.000000 && feature.properties['id_count'] <= 727.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(22,224,178,0.35294117647058826)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 727.000000 && feature.properties['id_count'] <= 755.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(22,224,179,0.3607843137254902)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 755.000000 && feature.properties['id_count'] <= 806.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(23,225,179,0.3686274509803922)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 806.000000 && feature.properties['id_count'] <= 869.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,226,179,0.37254901960784315)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 869.000000 && feature.properties['id_count'] <= 930.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,227,180,0.3803921568627451)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 930.000000 && feature.properties['id_count'] <= 1011.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(25,228,180,0.38823529411764707)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1011.000000 && feature.properties['id_count'] <= 1047.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(25,229,180,0.396078431372549)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1047.000000 && feature.properties['id_count'] <= 1081.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,230,181,0.4)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1081.000000 && feature.properties['id_count'] <= 1127.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(27,230,181,0.40784313725490196)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1127.000000 && feature.properties['id_count'] <= 1205.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(27,231,181,0.41568627450980394)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1205.000000 && feature.properties['id_count'] <= 1250.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(28,232,182,0.4196078431372549)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1250.000000 && feature.properties['id_count'] <= 1308.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(28,233,182,0.42745098039215684)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1308.000000 && feature.properties['id_count'] <= 1353.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(30,234,183,0.43529411764705883)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1353.000000 && feature.properties['id_count'] <= 1428.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,234,184,0.4392156862745098)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1428.000000 && feature.properties['id_count'] <= 1485.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(36,235,185,0.4470588235294118)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1485.000000 && feature.properties['id_count'] <= 1528.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(38,235,186,0.4549019607843137)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1528.000000 && feature.properties['id_count'] <= 1555.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(41,235,187,0.4588235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1555.000000 && feature.properties['id_count'] <= 1629.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(44,236,188,0.4666666666666667)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1629.000000 && feature.properties['id_count'] <= 1729.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(47,236,189,0.4745098039215686)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1729.000000 && feature.properties['id_count'] <= 1785.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(50,237,190,0.47843137254901963)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1785.000000 && feature.properties['id_count'] <= 1854.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(52,237,191,0.48627450980392156)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1854.000000 && feature.properties['id_count'] <= 1919.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(55,238,192,0.49411764705882355)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1919.000000 && feature.properties['id_count'] <= 1970.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,238,193,0.4980392156862745)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 1970.000000 && feature.properties['id_count'] <= 2054.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(61,239,195,0.5058823529411764)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2054.000000 && feature.properties['id_count'] <= 2103.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(64,239,196,0.5098039215686274)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2103.000000 && feature.properties['id_count'] <= 2135.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(66,239,197,0.5176470588235295)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2135.000000 && feature.properties['id_count'] <= 2204.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(69,240,198,0.5254901960784314)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2204.000000 && feature.properties['id_count'] <= 2305.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(72,240,199,0.5294117647058824)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2305.000000 && feature.properties['id_count'] <= 2423.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,241,200,0.5372549019607843)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2423.000000 && feature.properties['id_count'] <= 2523.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(78,241,201,0.5450980392156862)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2523.000000 && feature.properties['id_count'] <= 2593.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(80,242,202,0.5490196078431373)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2593.000000 && feature.properties['id_count'] <= 2639.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,242,203,0.5568627450980392)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2639.000000 && feature.properties['id_count'] <= 2695.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(86,243,204,0.5647058823529412)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2695.000000 && feature.properties['id_count'] <= 2813.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(89,243,205,0.5686274509803921)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2813.000000 && feature.properties['id_count'] <= 2966.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(92,243,206,0.5764705882352941)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 2966.000000 && feature.properties['id_count'] <= 3014.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(94,244,207,0.5843137254901961)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 3014.000000 && feature.properties['id_count'] <= 3161.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(97,244,209,0.5882352941176471)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 3161.000000 && feature.properties['id_count'] <= 3316.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(100,245,210,0.596078431372549)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 3316.000000 && feature.properties['id_count'] <= 3511.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,245,211,0.6)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 3511.000000 && feature.properties['id_count'] <= 3744.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(106,246,212,0.6078431372549019)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 3744.000000 && feature.properties['id_count'] <= 4024.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(108,246,213,0.615686274509804)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 4024.000000 && feature.properties['id_count'] <= 4186.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(111,247,214,0.6196078431372549)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 4186.000000 && feature.properties['id_count'] <= 4413.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,247,215,0.6274509803921569)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 4413.000000 && feature.properties['id_count'] <= 4546.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(117,247,216,0.6352941176470588)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 4546.000000 && feature.properties['id_count'] <= 4702.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(120,248,217,0.6392156862745098)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 4702.000000 && feature.properties['id_count'] <= 5078.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(122,248,218,0.6470588235294118)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 5078.000000 && feature.properties['id_count'] <= 5337.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,249,219,0.6549019607843137)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 5337.000000 && feature.properties['id_count'] <= 5712.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(128,249,220,0.6588235294117647)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 5712.000000 && feature.properties['id_count'] <= 6024.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(131,250,221,0.6666666666666666)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 6024.000000 && feature.properties['id_count'] <= 6536.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(134,250,223,0.6745098039215687)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 6536.000000 && feature.properties['id_count'] <= 6653.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(136,251,224,0.6784313725490196)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 6653.000000 && feature.properties['id_count'] <= 6871.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(139,251,225,0.6862745098039216)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 6871.000000 && feature.properties['id_count'] <= 7799.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(142,251,226,0.6901960784313725)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 7799.000000 && feature.properties['id_count'] <= 8404.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,252,227,0.6980392156862745)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 8404.000000 && feature.properties['id_count'] <= 9025.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,252,228,0.7058823529411765)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 9025.000000 && feature.properties['id_count'] <= 10526.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(150,253,229,0.7098039215686275)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 10526.000000 && feature.properties['id_count'] <= 11482.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(153,253,230,0.7176470588235294)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 11482.000000 && feature.properties['id_count'] <= 11747.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(156,254,231,0.7254901960784313)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 11747.000000 && feature.properties['id_count'] <= 12472.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(159,254,232,0.7294117647058823)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 12472.000000 && feature.properties['id_count'] <= 15545.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(162,255,233,0.7372549019607844)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 15545.000000 && feature.properties['id_count'] <= 30932.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,255,234,0.7450980392156863)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['id_count'] >= 30932.000000 && feature.properties['id_count'] <= 44912.000000 ) {
+                return {
+                pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(167,255,235,0.7490196078431373)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1');
+        map.getPane('pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1').style.zIndex = 401;
+        map.getPane('pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1').style['mix-blend-mode'] = 'normal';
+        var layer_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1 = new L.geoJson(json_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+            layerName: 'layer_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+            pane: 'pane_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1',
+            onEachFeature: pop_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1,
+            style: style_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1_0,
+        });
+        bounds_group.addLayer(layer_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1);
+        map.addLayer(layer_cc_30DayMapChallengeroute_vertices_hex_5ac_counts_1);
+
+        map.createPane('labels');
+        map.getPane('labels').style.zIndex = 650
+        var layer_CARTODarkMatterLabelsOnly_2 = L.tileLayer('https://a.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png', {
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 9,
+            maxZoom: 22,
+            minNativeZoom: 0,
+            maxNativeZoom: 18,
+            pane: 'labels'
+        });
+        layer_CARTODarkMatterLabelsOnly_2;
+        map.addLayer(layer_CARTODarkMatterLabelsOnly_2);
+            var abstract = new L.Control({'position':'topright'});
+            abstract.onAdd = function (map) {
+                this._div = L.DomUtil.create('div',
+                'leaflet-control leaflet-bar abstract');
+                this._div.id = 'abstract'
+
+                    abstract.show();
+                    return this._div;
+                };
+                abstract.show = function () {
+                    this._div.classList.remove("abstract");
+                    this._div.classList.add("abstractUncollapsed");
+                    this._div.innerHTML = 'Vertices from 5 months of Citrix Cycle rides aggregated to 5 acre hexagons.';
+            };
+            abstract.addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>

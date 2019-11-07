@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=None"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'None');
+        </script>
+        <meta name="description" content="">
+        <meta name="author" content="Hemanta Sharma">
+        <title>Day 4: Hexagons</title>
+
+        
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../assets/css/custom.css" />
+
+                <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+        </script>
+        <!-- MathJax configuration -->
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                    displayMath: [ ["$$",'$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                // Center justify equations in code and markdown cells. Elsewhere
+                // we use CSS to left justify single line equations in code cells.
+                displayAlign: 'center',
+                "HTML-CSS": {
+                    styles: {'.MathJax_Display': {"margin": 0}},
+                    linebreaks: { automatic: true }
+                }
+            });
+        </script>
+
+    </head>
+
+    <body>
+            <nav class="navbar navbar-default">
+        <div class="container text-center">
+
+            <div id="navbar" class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                
+                    <li><a href="../index.html">Home</a></li>
+                
+                    <li><a href="index.html">Blog</a></li>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div id='content'>
+            <h1>
+ Day 4: Hexagons
+</h1>
+<p>
+ Citrix Cycle data returns! Today’s map uses the same data from
+ <a href="day-02-lines.html">
+  Day 2
+ </a>
+ , but represented in a different way. Using QGIS, I extracted all the vertices from each Citrix Cycle ride lines. I happened to have a 5 acre hexagon grid layer for Raleigh handy so yet again I called upon QGIS to count how many vertices landed in each hexagon. I styled the hexagons using a custom teal color ramp where low traffic areas appear more transparent and darker while higher traffic areas show up as brighter and more opaque.
+</p>
+<p>
+ For this map, I wanted tip my hat to
+ <a href="https://twitter.com/tomchadwin">
+  Tom Chadwin
+ </a>
+ ,
+ <a href="https://twitter.com/ricckli">
+  Riccardo Klinger
+ </a>
+ , and all the other folks who have contributed to the
+ <a href="https://github.com/tomchadwin/qgis2web">
+  qgis2web
+ </a>
+ plugin for QGIS. I used this excellent plugin to quickly publish a fully functioning Leaflet-based map based on my project in QGIS. Although I feel fairly comfortable using Leaflet to make this kind of map myself, this plugin is lowers the barrier to both for producing an interactive web map and for learning how to write code for your own custom applications.
+</p>
+<iframe height="700vh" src="../embeds/day-04-hexagons/index.html" width="100%">
+</iframe>
+<p>
+ My map today is not particularly remarkable so I encourage you to instead go and read
+ <a href="https://tom.chadw.in/wrote/qgis2webTheStorySoFar">
+  Tom’s write-up on the history of the qgis2web plugin
+ </a>
+ and check out Riccardo’s excellent site,
+ <a href="http://www.digital-geography.com/">
+  digital-geograph.com
+ </a>
+ .
+</p>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!--
+Script to remove the notebook prompt:
+In[12]
+Out[12]
+-->
+<script>
+    var prompts = document.getElementsByClassName('prompt');
+
+    while(prompts[0]) {
+    prompts[0].parentNode.removeChild(prompts[0]);
+    }
+</script>
+                    <div class="container">
+            <div id="share" class="navbar-static-bottom"></div>
+            <script>
+                $("#share").jsSocials({
+                    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+                });
+            </script>
+            <div id="disqus_thread"></div>
+            <script>
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                    s.src = 'https://None.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>
+                Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+            <script id="dsq-count-scr" src="//None.disqus.com/count.js" async></script>
+        </div>
+            <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lag=html&lang=py&lang=sh&lang=bsh&lang=js&amp;"></script>
+
+
+<link rel="stylesheet" href="../assets/css/light_theme.css" />
+
+        </div>
+
+    </body>
+</html>
