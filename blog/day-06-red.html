@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=None"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'None');
+        </script>
+        <meta name="description" content="">
+        <meta name="author" content="Hemanta Sharma">
+        <title>Day 6: Red</title>
+
+        
+        <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../assets/css/custom.css" />
+
+                <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
+        </script>
+        <!-- MathJax configuration -->
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+                    displayMath: [ ["$$",'$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                // Center justify equations in code and markdown cells. Elsewhere
+                // we use CSS to left justify single line equations in code cells.
+                displayAlign: 'center',
+                "HTML-CSS": {
+                    styles: {'.MathJax_Display': {"margin": 0}},
+                    linebreaks: { automatic: true }
+                }
+            });
+        </script>
+
+    </head>
+
+    <body>
+            <nav class="navbar navbar-default">
+        <div class="container text-center">
+
+            <div id="navbar" class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                
+                    <li><a href="../index.html">Home</a></li>
+                
+                    <li><a href="index.html">Blog</a></li>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+        <div id='content'>
+            <h1>
+ Day 6: Red
+</h1>
+<p>
+ I remember back in the late-90s, after watching
+ <em>
+  Wishbone
+ </em>
+ and
+ <em>
+  Where in the World is Carmen Sandiego?
+ </em>
+ on my local PBS station, there would be this strange show where a flannel-clad man in a bucket hat would, among other things, coming up with comedic hacks to household chores. This was the strange world of
+ <em>
+  The Red Green Show
+ </em>
+ . It was a distinclty Candian show that despite being pretty dumb, was charming. I haven’t watched
+ <em>
+  The Red Green Show
+ </em>
+ in over 20 years, but when I was thinking about what to map for my Day 6 map, I suddenly had a memory of this show. I discovered that not only does Red Green hace a website, but he also tours! I found a list of his 2019 tour dates which included information about the date and location of each show. Through the combined magic of copy &amp; paste and find &amp; replace in Notepad, I was able to create a CSV containing a record of each tour stop.
+</p>
+<p>
+ Admittedly, it’s not the most interesting data, so I decided I’d use this opportunity to try and do some non-Web Mercator web mapping. I’d considered using D3.js - I may do so for another map - but I recalled that CARTO had at one time published a tutorial on non-Web Mercator web mapping. Sure enough, I found
+ <a href="https://carto.com/blog/free-your-maps-web-mercator/">
+  this great post from Mamata Akella written way back in 2015 on this topic
+ </a>
+ . CARTO has changed quite a bit since then, but because PostGIS is the backbone of CARTO, the workflow Mamata described worked with minimal adjustment.
+</p>
+<p>
+ For my map,I imported my CSV of Red Green tour dates, which were then geocoded by CARTO. I also added Canadian provincial boundaries from
+ <a href="http://www.naturalearthdata.com/">
+  Natural Earth Data
+ </a>
+ . I wanted to use the North America Albers Equal Area Conic projection, but CARTO’s PostGIS implementation does not come with this projection included. Following Mamata’s guide I copied the SQL definition for this projection from
+ <a href="http://epsg.io/102008">
+  epsg.io
+ </a>
+ . From there it was just a matter of using PostGIS’s
+ <code>
+  ST_TRANSFORM()
+ </code>
+ to transform the geometry column for both the tour dates and Natural Earth data from Web Mercator to North America Albers Equal Area Conic. For styling, I opted for something simple, albeit unnecessarily elegant within the Red Green-verse.
+</p>
+<p>
+ <img alt="Red Green Tour 2019" src="..\images\day-06-red\day-06-red.png"/>
+</p>
+<p>
+ I’ve opted to only embed an image of this map as the actual performance of the interactive version is not great. If you’d like to check for yourself, you can here
+ <a href="https://maptastik.carto.com/builder/f8ee6ca9-354b-405f-a5d5-3701d98720d5/embed">
+  here
+ </a>
+ .
+</p>
+<h2>
+ Check out
+ <em>
+  The Red Green Show
+ </em>
+</h2>
+<iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/5RM6JJb3azE" width="560">
+</iframe>
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css" />
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!--
+Script to remove the notebook prompt:
+In[12]
+Out[12]
+-->
+<script>
+    var prompts = document.getElementsByClassName('prompt');
+
+    while(prompts[0]) {
+    prompts[0].parentNode.removeChild(prompts[0]);
+    }
+</script>
+                    <div class="container">
+            <div id="share" class="navbar-static-bottom"></div>
+            <script>
+                $("#share").jsSocials({
+                    shares: ["email", "twitter", "facebook", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+                });
+            </script>
+            <div id="disqus_thread"></div>
+            <script>
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                    s.src = 'https://None.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>
+                Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+            <script id="dsq-count-scr" src="//None.disqus.com/count.js" async></script>
+        </div>
+            <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&lag=html&lang=py&lang=sh&lang=bsh&lang=js&amp;"></script>
+
+
+<link rel="stylesheet" href="../assets/css/light_theme.css" />
+
+        </div>
+
+    </body>
+</html>
