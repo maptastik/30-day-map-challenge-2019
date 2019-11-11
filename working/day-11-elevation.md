@@ -2,4 +2,4 @@
 
 I'm from Indiana. It's super-flat. My wife, however, is from the Berkshires of western Massachusetts. It's always a pleasure to visit this area not least because of the ancient rolling mountains that bubble up from the landscape. The map I made for today's theme missing a lot of your typical map elements (title, north arrow, legend, etc.). I'm feeling a bit lazy 11 days into this thing! But I did want to use today's theme as way to map the topography of the Lenox, Massachusetts area. This map uses a USGS Topo layer blended with 2005 Shaded Relief from [MassGIS](https://www.mass.gov/orgs/massgis-bureau-of-geographic-information). For the Rotation, tilt and rendering I used QGIS's newish 3D map view. I'd never used this view before and am generally pleased with the results. A gradient overlay moving away from the center of the map gives a slight illusion of a tilt shift.  
 
-![Lenox](../images/day-11-elevation.png)
+![Lenox](../images/day-11-elevation.jpg)
